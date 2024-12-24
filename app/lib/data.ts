@@ -26,12 +26,12 @@ export async function fetchRevenue() {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     const data = await connectionPool.query(`SELECT * FROM revenue`);
 
-    // console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed after 3 seconds.');
 
     return data.rows;
   } catch (error) {
@@ -55,6 +55,10 @@ export async function fetchLatestInvoices() {
     //   JOIN customers ON invoices.customer_id = customers.id
     //   ORDER BY invoices.date DESC
     //   LIMIT 5`;
+
+    console.log('Fetching latest invoices data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
     const data = await connectionPool.query(`
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
       FROM invoices
@@ -66,6 +70,8 @@ export async function fetchLatestInvoices() {
       ...invoice,
       amount: formatCurrency(invoice.amount),
     }));
+
+    console.log('Another Data fetch completed after 3 seconds.');
 
     return latestInvoices;
   } catch (error) {
@@ -82,6 +88,9 @@ export async function fetchCardData() {
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
     // how to initialize multiple queries in parallel with JS.
+
+    const _ = await new Promise((resolve) => setTimeout(resolve, 1800))
+
     const invoiceCountPromise = connectionPool.query(`SELECT COUNT(*) FROM invoices`);
     const customerCountPromise = connectionPool.query(`SELECT COUNT(*) FROM customers`);
     const invoiceStatusPromise = connectionPool.query(`SELECT
