@@ -1,19 +1,28 @@
 import { db } from "@vercel/postgres";
 import { sql } from "@vercel/postgres";
 import { createClient } from '@vercel/postgres';
+import { Pool } from "@vercel/postgres";
+import connectionPool from "@/db";
 
-const client = await db.connect();
+
+// const client = await db.connect();
 
 // const client = createClient();
 // await client.connect();
 
 async function listInvoices() {
-  const data = await client.sql`
+  const data = await connectionPool.query(`
     SELECT invoices.amount, customers.name
     FROM invoices
     JOIN customers ON invoices.customer_id = customers.id
     WHERE invoices.amount = 666;
-  `;
+  `);
+  // const data = await client.sql`
+  //   SELECT invoices.amount, customers.name
+  //   FROM invoices
+  //   JOIN customers ON invoices.customer_id = customers.id
+  //   WHERE invoices.amount = 666;
+  // `;
 
   // const data = await client.sql`SELECT * FROM revenue`;
   // const data = await client.sql`SELECT * FROM revenue`;
