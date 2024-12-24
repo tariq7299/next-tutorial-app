@@ -1,6 +1,11 @@
 import { db } from "@vercel/postgres";
+import { sql } from "@vercel/postgres";
+import { createClient } from '@vercel/postgres';
 
 const client = await db.connect();
+
+// const client = createClient();
+// await client.connect();
 
 async function listInvoices() {
   const data = await client.sql`
@@ -9,6 +14,10 @@ async function listInvoices() {
     JOIN customers ON invoices.customer_id = customers.id
     WHERE invoices.amount = 666;
   `;
+
+  // const data = await client.sql`SELECT * FROM revenue`;
+  // const data = await client.sql`SELECT * FROM revenue`;
+
   return data.rows;
 }
 
