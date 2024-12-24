@@ -16,3 +16,7 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 
 **Note about suspense and loading skeletons**  
 - Where you place your suspense boundaries will vary depending on your application. In general, it's good practice to move your data fetches down to the components that need it, and then wrap those components in Suspense. But there is nothing wrong with streaming the sections or the whole page if that's what your application needs.
+
+
+**Note about PPR (partial pre rendering)**
+- To use ppr you need to install the latest next@canary and not the normal next
