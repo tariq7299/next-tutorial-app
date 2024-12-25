@@ -1,9 +1,8 @@
-## Next.js App Router Course - Starter
+# Next.js App Router Course - Starter
 
 This is the starter template for the Next.js App Router Course. It contains the starting code for the dashboard application.
 
 For more information, see the [course curriculum](https://nextjs.org/learn) on the Next.js Website.
-
 
 ## Some notes
 
@@ -20,3 +19,8 @@ For more information, see the [course curriculum](https://nextjs.org/learn) on t
 
 **Note about PPR (partial pre rendering)**
 - To use ppr you need to install the latest next@canary and not the normal next
+
+
+**A tip when using using a native form in react with many fields**
+
+- Tip: If you're working with forms that have many fields, you may want to consider using the entries() method with JavaScript's Object.fromEntries(). For example: `const rawFormData = Object.fromEntries(formData.entries())`

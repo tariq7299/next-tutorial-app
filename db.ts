@@ -18,6 +18,5 @@ const connectionPool = new Pool({
     port: 5432,
 });
 
-console.log("connectionPool", connectionPool);
 
 export default connectionPool;
